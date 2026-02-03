@@ -23,20 +23,27 @@ async function fetchTasks() {
 // Add new task
 taskForm.addEventListener("submit", async (e) => {
     e.preventDefault();
+
     const title = document.getElementById("title").value;
     const description = document.getElementById("description").value;
     const status = document.getElementById("status").value;
-    
+    const assignedTo = document.getElementById("assignedTo").value; //  ADD THIS
 
     await fetch(API_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ title, description, status })
+        body: JSON.stringify({
+            title,
+            description,
+            status,
+            assignedTo   // SEND TO BACKEND
+        })
     });
 
     taskForm.reset();
     fetchTasks();
 });
+
 
 // Delete task
 async function deleteTask(id) {

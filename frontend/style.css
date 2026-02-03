@@ -135,7 +135,6 @@ form button {
 form button:hover {
     background: #05ad05;
 }
-
 .filter {
     display: flex;
     justify-content: flex-end;
