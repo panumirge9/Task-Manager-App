@@ -26,6 +26,7 @@ taskForm.addEventListener("submit", async (e) => {
     const title = document.getElementById("title").value;
     const description = document.getElementById("description").value;
     const status = document.getElementById("status").value;
+    
 
     await fetch(API_URL, {
         method: "POST",
