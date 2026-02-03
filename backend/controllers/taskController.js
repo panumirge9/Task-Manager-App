@@ -18,7 +18,7 @@ res.json(tasks);
 
 // UPDATE Task
 exports.updateTask = async (req, res) => {
-  const task = await Task.findByIdAndUpdate(
+const task = await Task.findByIdAndUpdate(
     req.params.id,
     req.body,
     { new: true }
