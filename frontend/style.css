@@ -1,220 +1,622 @@
-/* body {
-    font-family: Arial, sans-serif;
-    background: #f7f7f7;
-    margin: 0;
-    padding: 0;
+:root {
+    --bg-color: #f4f7f6;
+    --sidebar-bg: #1e293b;
+    --sidebar-hover: #334155;
+    --primary-color: #2563eb;
+    --primary-hover: #1d4ed8;
+    --text-dark: #0f172a;
+    --text-light: #f8fafc;
+    --danger: #ef4444;
+    --danger-hover: #dc2626;
+    --border: #e2e8f0;
 }
 
-.container {
-    max-width: 600px;
-    margin: 40px auto;
-    background: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
-
-h1 {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-form input, form textarea, form select {
-    width: 100%;
-    margin-bottom: 10px;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
-
-form button {
-    width: 100%;
-    padding: 10px;
-    background: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-form button:hover {
-    background: #0056b3;
-}
-
-ul {
-    list-style: none;
-    padding: 0;
-}
-
-li {
-    padding: 10px;
-    background: #f1f1f1;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-li button {
-    background: red;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 5px 10px;
-    cursor: pointer;
-} */
-
-/* Reset some default styles */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Segoe UI', system-ui, sans-serif;
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(to right, #6fa4eb, #1832a6);
-    min-height: 100vh;
+    background-color: var(--bg-color);
+    color: var(--text-dark);
+}
+
+/* =========================================
+   1. DASHBOARD STYLES (Admin & Employee)
+   ========================================= */
+
+/* Layout */
+.dashboard-container {
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 40px 20px;
+    height: 100vh;
+    overflow: hidden;
 }
 
-.container {
-    width: 100%;
-    max-width: 900px;
-    background: #fff;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-}
-
-h1 {
-    text-align: center;
-    margin-bottom: 25px;
-    color: #333;
-    font-size: 2.5rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-form {
+/* Sidebar */
+.sidebar {
+    width: 260px;
+    background-color: var(--sidebar-bg);
+    color: var(--text-light);
     display: flex;
     flex-direction: column;
 }
 
-form input, form textarea, form select {
-    margin-bottom: 15px;
-    padding: 12px 15px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    font-size: 1rem;
-    transition: all 0.3s ease;
+.sidebar-header {
+    padding: 24px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
-form input:focus,
-form textarea:focus,
-form select:focus {
-    border-color: #007bff;
-    outline: none;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-}
-
-form button {
-    padding: 12px;
-    background: #007bff;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: background 0.3s ease;
-}
-
-form button:hover {
-    background: #05ad05;
-}
-.filter {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    margin: 20px 0;
-}
-
-.filter label {
-    margin-right: 10px;
-    font-weight: bold;
-    color: #555;
-}
-
-.filter select {
-    padding: 8px 10px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-}
-
-/* Task List */
-ul {
+.nav-links {
     list-style: none;
-    padding: 0;
+    padding: 20px 0;
 }
 
-li {
-    background: #f0f4f8;
-    padding: 15px 20px;
-    margin-bottom: 15px;
-    border-radius: 12px;
+.nav-links li a {
+    display: flex;
+    align-items: center;
+    padding: 15px 24px;
+    color: #cbd5e1;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    gap: 12px;
+}
+
+.nav-links li.active a, .nav-links li a:hover {
+    background-color: var(--sidebar-hover);
+    color: var(--text-light);
+    border-left: 4px solid var(--primary-color);
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    padding: 30px 40px;
+    overflow-y: auto;
+}
+
+.topbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    transition: transform 0.2s, box-shadow 0.2s;
+    margin-bottom: 30px;
 }
 
-li:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-
-li span {
-    flex: 1;
-    font-size: 1rem;
-    color: #333;
-}
-
-/* Buttons inside tasks */
-li button {
-    margin-left: 10px;
-    padding: 6px 12px;
-    border-radius: 8px;
-    font-weight: bold;
+/* Buttons */
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
     border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    font-weight: 600;
+    transition: background 0.2s;
 }
 
-li button.delete {
-    background: #dc3545;
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+}
+
+.btn-danger {
+    background-color: var(--danger);
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+
+.btn-danger:hover {
+    background-color: var(--danger-hover);
+}
+
+/* Table */
+.task-section {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    overflow: hidden;
+}
+
+.task-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.task-table th, .task-table td {
+    padding: 16px 20px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+}
+
+.task-table th {
+    background-color: #f8fafc;
+    color: #475569;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+}
+
+.task-table tr:hover {
+    background-color: #f1f5f9;
+}
+
+/* Badges */
+.badge {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+.status-pending { background: #fef08a; color: #854d0e; }
+.status-inprogress { background: #bfdbfe; color: #1e40af; }
+.status-completed { background: #bbf7d0; color: #166534; }
+
+/* Modal */
+.modal {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal.hidden {
+    display: none;
+}
+
+.modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.close-modal {
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* Form */
+.form-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-row {
+    display: flex;
+    gap: 15px;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+label {
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #475569;
+}
+
+input, select, textarea {
+    padding: 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 0.95rem;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.form-actions {
+    margin-top: 20px;
+    text-align: right;
+}
+
+/* Dashboard Content Visibility */
+.content-section {
+    animation: fadeIn 0.4s ease-in-out;
+}
+.hidden {
+    display: none !important;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Welcome Banner */
+.welcome-banner {
+    background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);
+    border-radius: 15px;
+    padding: 30px 40px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2);
+}
+.welcome-banner h2 { font-size: 1.8rem; margin-bottom: 8px; }
+.banner-icon { font-size: 4rem; opacity: 0.8; }
+
+/* Stats Grid */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+.stat-card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    transition: transform 0.2s;
+}
+.stat-card:hover { transform: translateY(-5px); }
+.stat-icon {
+    width: 60px; height: 60px;
+    border-radius: 12px;
+    display: flex; justify-content: center; align-items: center;
+    font-size: 1.5rem;
+}
+.stat-details h3 { font-size: 0.9rem; color: #64748b; margin-bottom: 5px; }
+.stat-details p { font-size: 1.8rem; font-weight: bold; color: #0f172a; }
+
+/* Employee Cards Grid */
+.employee-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+.employee-card {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.employee-card h3 { color: #0f172a; font-size: 1.2rem; margin-bottom: 5px; }
+.employee-card .role { color: #3b82f6; font-size: 0.9rem; font-weight: 600; margin-bottom: 20px; }
+.emp-stats {
+    display: flex; justify-content: space-around;
+    border-top: 1px solid #e2e8f0; padding-top: 15px;
+}
+.emp-stat-item { display: flex; flex-direction: column; }
+.emp-stat-item span:first-child { font-size: 1.2rem; font-weight: bold; color: #0f172a; }
+.emp-stat-item span:last-child { font-size: 0.8rem; color: #64748b; }
+
+.emp-avatar {
+    width: 80px; height: 80px;
+    background: #e2e8f0;
+    border-radius: 50%;
+    margin: 0 auto 15px auto;
+    display: flex; justify-content: center; align-items: center;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.emp-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/* =========================================
+   2. LOGIN PAGE STYLES
+   ========================================= */
+
+.login-body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background: radial-gradient(circle at 0% 0%, #1e293b 0%, #0f172a 50%, #020617 100%);
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    overflow: hidden;
+    color: white; 
+}
+
+.login-wrapper {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    position: relative;
+}
+
+.login-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 60%);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Left Side: Glassmorphism Form */
+.login-left {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    position: relative;
+    z-index: 10;
+}
+
+.login-form-container {
+    width: 100%;
+    max-width: 420px;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    padding: 40px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.login-form-container .login-header {
+    margin-bottom: 40px;
+    text-align: left;
+}
+
+.login-form-container .login-header h2 {
+    color: #ffffff;
+    font-size: 2.2rem;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+}
+
+.login-form-container .login-header p {
+    color: #94a3b8;
+    font-size: 1.1rem;
+}
+
+.login-form-container label {
+    color: #e2e8f0;
+}
+
+.login-form-container input, 
+.login-form-container select {
+    background: rgba(0, 0, 0, 0.2);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.login-form-container input:focus, 
+.login-form-container select:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.login-form-container select option {
+    background: #0f172a;
     color: white;
 }
 
-li button.delete:hover {
-    background: #de091e;
+/* --- Right Side: Auto-Shuffling 3D Carousel --- */
+.login-right {
+    flex: 1.2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 10;
+    
+    /* Variables to easily control the size of the shuffle */
+    --card-spread: 140px;      /* How far they slide left/right */
+    --card-depth-back: -80px;  /* How far back they get pushed */
+    --card-depth-front: 60px;  /* How far forward the front card pops */
 }
 
-/* Responsive adjustments */
-@media (max-width: 600px) {
-    .container {
-        padding: 20px;
+/* The exact size of ONE card so they all stack in the exact center */
+.team-profiles-container {
+    position: relative;
+    width: 220px; 
+    height: 300px; 
+    perspective: 1200px;
+    transform-style: preserve-3d; /* This tells the browser to process real 3D depth */
+}
+
+/* Base Card Styles */
+.profile-card {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    
+    /* The 12-second continuous shuffle animation */
+    animation: autoShuffle 12s infinite cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+/* Stagger the start times so they take turns being in front! */
+.profile-card:nth-child(1) { animation-delay: 0s; }
+.profile-card:nth-child(2) { animation-delay: -8s; } /* Starts 8 seconds ahead */
+.profile-card:nth-child(3) { animation-delay: -4s; } /* Starts 4 seconds ahead */
+
+/* The Keyframes: Maps out exactly where the cards travel */
+@keyframes autoShuffle {
+    /* FRONT CENTER (Stays here for 3 seconds) */
+    0%, 25% {
+        transform: translateX(0) translateZ(var(--card-depth-front)) rotateY(0deg);
+        filter: brightness(1);
+        z-index: 10;
     }
-    li {
-        flex-direction: column;
-        align-items: flex-start;
+    /* SLIDES TO RIGHT BACK */
+    33.33%, 58.33% {
+        transform: translateX(var(--card-spread)) translateZ(var(--card-depth-back)) rotateY(15deg);
+        filter: brightness(0.6);
+        z-index: 1;
     }
-    li div {
-        margin-top: 10px;
-        display: flex;
-        gap: 10px;
+    /* SLIDES BEHIND TO LEFT BACK */
+    66.66%, 91.66% {
+        transform: translateX(calc(var(--card-spread) * -1)) translateZ(var(--card-depth-back)) rotateY(-15deg);
+        filter: brightness(0.6);
+        z-index: 1;
+    }
+    /* RETURNS TO FRONT CENTER */
+    100% {
+        transform: translateX(0) translateZ(var(--card-depth-front)) rotateY(0deg);
+        filter: brightness(1);
+        z-index: 10;
     }
 }
 
+/* The Image Frame */
+.profile-img-wrapper {
+    width: 100%; 
+    height: 100%; 
+    border-radius: 20px; 
+    box-shadow: 
+        -15px 15px 25px rgba(0, 0, 0, 0.6),
+        inset 0 0 20px rgba(255, 255, 255, 0.1),
+        0 0 40px rgba(59, 130, 246, 0.3);
+    border: 3px solid rgba(255, 255, 255, 0.15);
+    transition: all 0.4s ease;
+}
+
+.profile-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    border-radius: 17px; 
+    object-fit: cover;
+}
+
+/* --- The Auto-Fading Name Tags --- */
+.profile-info {
+    position: absolute;
+    top: 320px; 
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 12px 25px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    pointer-events: none; 
+    white-space: nowrap;
+    
+    /* Syncs perfectly with the card shuffle to only show when in front */
+    animation: autoInfo 12s infinite cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+/* Match the info tag delays to the card delays */
+.profile-card:nth-child(1) .profile-info { animation-delay: 0s; }
+.profile-card:nth-child(2) .profile-info { animation-delay: -8s; }
+.profile-card:nth-child(3) .profile-info { animation-delay: -4s; }
+
+@keyframes autoInfo {
+    /* Visible when the card is in front */
+    0%, 25% { opacity: 1; transform: translateY(0); }
+    /* Hidden when the card moves to the back */
+    33.33%, 91.66% { opacity: 0; transform: translateY(20px); }
+    /* Fades back in as the card arrives at the front */
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+.profile-info h3 { margin: 0; font-size: 1.4rem; color: #ffffff; font-weight: 600; }
+.profile-info p { margin: 5px 0 0 0; font-size: 0.9rem; color: #60a5fa; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; }
+
+/* --- Hover Interaction (Pause & Focus) --- */
+/* 1. Pause the whole carousel if the mouse enters the area */
+.team-profiles-container:hover .profile-card,
+.team-profiles-container:hover .profile-info {
+    animation-play-state: paused !important;
+}
+
+/* 2. Pull whichever card you touch directly to the front */
+.profile-card:hover {
+    transform: translateX(0) translateZ(140px) rotateY(0deg) scale(1.05) translateY(-10px) !important;
+    filter: brightness(1) !important;
+    z-index: 100 !important;
+}
+/* --- Hover Interaction (Pause & Focus) --- */
+/* 1. Pause the whole carousel if the mouse enters the area */
+.team-profiles-container:hover .profile-card,
+.team-profiles-container:hover .profile-info {
+    animation-play-state: paused !important;
+}
+
+/* 2. Pull whichever card you touch directly to the front */
+.profile-card:hover {
+    transform: translateX(0) translateZ(140px) rotateY(0deg) scale(1.05) translateY(-10px) !important;
+    filter: brightness(1) !important;
+    z-index: 100 !important;
+}
+
+/* 3. ADD THE NEON GLOW TO THE CARD! */
+.profile-card:hover .profile-img-wrapper {
+    box-shadow: 
+        0 25px 50px rgba(0, 0, 0, 0.9),
+        0 0 70px rgba(59, 130, 246, 0.8),   /* Bright Neon Blue */
+        0 0 120px rgba(139, 92, 246, 0.6);  /* Deep Neon Purple */
+    border-color: rgba(59, 130, 246, 1);    /* Highlights the glass border */
+}
+
+/* 4. Force the hovered card's info tag to show */
+.profile-card:hover .profile-info {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+/* 3. Force the hovered card's info tag to show */
+.profile-card:hover .profile-info {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 900px) {
+    .login-wrapper { flex-direction: column-reverse; }
+    .login-right {
+        padding: 40px 10px;
+        --card-spread: 70px;
+        --card-depth-back: -50px;
+        --card-depth-front: 30px;
+    }
+    .team-profiles-container {
+        width: 140px;
+        height: 190px;
+    }
+    .profile-info {
+        top: 210px;
+        padding: 8px 15px;
+    }
+    .profile-info h3 { font-size: 1rem; }
+    .profile-info p { font-size: 0.75rem; }
+}

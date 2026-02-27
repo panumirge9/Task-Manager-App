@@ -3,34 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task Manager</title>
+    <title>Login - System Portal</title>
     <link rel="stylesheet" href="style.css">
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
-<body>
-    <div class="container">
-        <h1>Task Manager</h1>
+<body class="login-body">
+    <div class="login-wrapper">
         
-        <form id="taskForm">
-            <input type="text" id="title" placeholder="Task Title" required>
-            <textarea id="description" placeholder="Task Description"></textarea>
-            <label for="assignedTo">Task Assigned To:</label>
-            <select id="assignedTo">
-                <option value="shiv">Shivraj</option>
-                <option value="om">Om</option>
-                <option value="panu">Pranav</option>
-            </select>
-            <label for="status">Status:</label>
-            <select id="status">
-                <option value="pending">Pending</option>
-                <option value="in-progress">In Progress</option>
-                <option value="completed">Completed</option>
-            </select>
-            <button type="submit">Add Task</button>
-        </form>
+        <div class="login-left">
+            <div class="login-form-container">
+                <div class="login-header">
+                    <h2>Welcome Back 👋</h2>
+                    <p>Sign in to manage your team's tasks</p>
+                </div>
+                
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" placeholder="e.g., Shivani Patra" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" placeholder="Enter password" required>
+                    </div>
 
-        <ul id="taskList"></ul>
+                    <div class="form-group">
+                        <label for="role">Role</label>
+                        <select id="role" required>
+                            <option value="admin">Administrator</option>
+                            <option value="employee">Employee</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn-primary" style="width: 100%; margin-top: 20px; padding: 14px; font-size: 1.1rem;">Sign In</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="login-right">
+            <div class="team-profiles-container">
+                
+                <div class="profile-card">
+                    <div class="profile-img-wrapper">
+                        <img src="images/shiv.jpeg" alt="Shivraj" onerror="this.src='https://randomuser.me/api/portraits/men/32.jpg'">
+                    </div>
+                    <div class="profile-info">
+                        <h3>Shivraj</h3>
+                        <p>Administrator</p>
+                    </div>
+                </div>
+
+                <div class="profile-card">
+                    <div class="profile-img-wrapper">
+                        <img src="images/om.jpeg" alt="Om" onerror="this.src='https://randomuser.me/api/portraits/men/45.jpg'">
+                    </div>
+                    <div class="profile-info">
+                        <h3>Om</h3>
+                        <p>Team Lead</p>
+                    </div>
+                </div>
+
+                <div class="profile-card">
+                    <div class="profile-img-wrapper">
+                        <img src="images/pranav.jpeg" alt="Pranav" onerror="this.src='https://randomuser.me/api/portraits/men/22.jpg'">
+                    </div>
+                    <div class="profile-info">
+                        <h3>Pranav</h3>
+                        <p>Developer</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
     </div>
 
-    <script src="script.js"></script>
+    <script src="login.js"></script>
 </body>
 </html>
