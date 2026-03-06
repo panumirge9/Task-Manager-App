@@ -11,6 +11,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+
 app.use('/frontend', express.static(path.join(__dirname, 'frontend'))); 
 
 // MongoDB Connection
