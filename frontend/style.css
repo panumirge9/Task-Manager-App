@@ -1,10 +1,8 @@
-/* =========================================
-   GLOBAL VARIABLES & RESET
-   ========================================= */
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
-    /* Modern Indigo/Purple Color Palette */
+
     --primary: #6366f1;
     --primary-hover: #4f46e5;
     --secondary: #a855f7;
@@ -36,7 +34,6 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-/* Custom Scrollbar */
 ::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
@@ -47,11 +44,10 @@ body {
     display: flex;
     height: 100vh;
     overflow: hidden;
-    padding: 15px; /* Adds space around the whole app */
+    padding: 15px; 
     background: #e2e8f0;
 }
 
-/* Floating Sidebar */
 .sidebar {
     width: 260px;
     background-color: var(--sidebar-bg);
@@ -65,7 +61,7 @@ body {
     overflow: hidden;
 }
 
-/* Subtle decorative glow behind sidebar */
+
 .sidebar::before {
     content: '';
     position: absolute;
@@ -123,7 +119,6 @@ body {
     box-shadow: var(--shadow-glow);
 }
 
-/* Main Content Area */
 .main-content {
     flex: 1;
     background: var(--surface);
@@ -147,7 +142,6 @@ body {
     letter-spacing: -0.5px;
 }
 
-/* Buttons */
 .btn-primary {
     background: linear-gradient(135deg, var(--primary), var(--secondary));
     color: white;
@@ -183,7 +177,6 @@ body {
     box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
 }
 
-/* Animated Welcome Banner */
 .welcome-banner {
     background: linear-gradient(-45deg, #6366f1, #a855f7, #ec4899, #6366f1);
     background-size: 400% 400%;
@@ -200,14 +193,13 @@ body {
     overflow: hidden;
 }
 
-/* Glassmorphism circle on banner */
 .welcome-banner::after {
     content: '';
     position: absolute;
     right: -20px; top: -50px;
     width: 200px; height: 200px;
     background: rgba(255, 255, 255, 0.1);
-    -webkit-backdrop-filter: blur(10px); /* Add this line */
+    -webkit-backdrop-filter: blur(10px); 
     backdrop-filter: blur(10px);
     border-radius: 50%;
 }
@@ -228,7 +220,6 @@ body {
     100% { transform: translateY(0px); }
 }
 
-/* Stats Grid */
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -245,7 +236,6 @@ body {
     gap: 18px;
     border: 1px solid var(--border);
     box-shadow: var(--shadow-sm);
-    /* Smoother, spring-like transition */
     transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
     position: relative;
     overflow: hidden;
@@ -265,7 +255,6 @@ body {
 }
 .stat-card:hover { 
     transform: translateY(-8px); 
-    /* Soft indigo glow instead of a harsh black shadow */
     box-shadow: 0 15px 30px -5px rgba(99, 102, 241, 0.2);
     border-color: rgba(99, 102, 241, 0.3);
 }
@@ -284,7 +273,6 @@ body {
 .stat-details h3 { font-size: 0.9rem; color: var(--text-muted); font-weight: 500; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.5px; }
 .stat-details p { font-size: 2rem; font-weight: 700; color: var(--text-dark); line-height: 1; }
 
-/* Employee Cards Grid */
 .employee-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -302,7 +290,6 @@ body {
 }
 .employee-card:hover {
     transform: translateY(-10px);
-    /* Purple glow for employee cards */
     box-shadow: 0 20px 40px -10px rgba(168, 85, 247, 0.2);
     border-color: rgba(168, 85, 247, 0.3);
 }
@@ -343,7 +330,6 @@ body {
 }
 .emp-avatar img { width: 100%; height: 100%; object-fit: cover; }
 
-/* Elegant Table */
 .task-section {
     background: var(--surface);
     border-radius: 16px;
@@ -379,7 +365,7 @@ body {
 }
 .task-table tbody tr:hover { 
     background-color: #ffffff; 
-    transform: scale(1.01); /* Pop the row out slightly */
+    transform: scale(1.01); 
     box-shadow: 0 5px 15px rgba(0,0,0,0.06);
 }
 .task-table tbody tr:hover td:first-child {
@@ -394,7 +380,6 @@ body {
 .task-table td { font-size: 0.95rem; color: #334155; }
 .task-table td strong { color: var(--text-dark); font-weight: 600; }
 
-/* Badges */
 .badge {
     padding: 6px 12px;
     border-radius: 20px;
@@ -407,12 +392,11 @@ body {
 .status-inprogress { background: #e0e7ff; color: #4338ca; }
 .status-completed { background: #dcfce7; color: #15803d; }
 
-/* Modal - Glassmorphism */
 .modal {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
     background: rgba(15, 23, 42, 0.4);
-    -webkit-backdrop-filter: blur(8px); /* Add this line */
+    -webkit-backdrop-filter: blur(8px); 
     backdrop-filter: blur(8px);
     display: flex; justify-content: center; align-items: center;
     z-index: 1000;
@@ -428,8 +412,7 @@ body {
     border-radius: 24px;
     width: 100%;
     max-width: 550px;
-    
-    /* The premium neon glow and glass border */
+
     box-shadow: 
         0 0 40px rgba(168, 85, 247, 0.2), 
         0 0 15px rgba(99, 102, 241, 0.3), 
@@ -437,7 +420,7 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.15);
     
     transform: translateY(0);
-    /* New bouncy pop-in animation */
+
     animation: modalPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 @keyframes modalPop {
@@ -445,7 +428,6 @@ body {
     100% { transform: translateY(0) scale(1); opacity: 1; }
 }
 
-/* Modal Close Button */
 .close-modal { 
     font-size: 2rem; 
     cursor: pointer; 
@@ -455,13 +437,9 @@ body {
 }
 .close-modal:hover { 
     color: var(--danger); 
-    transform: rotate(90deg); /* Satisfying spin on hover */
+    transform: rotate(90deg); 
 }
 
-/* =========================================
-   MODAL INPUTS & GLOWING BUTTONS
-   ========================================= */
-/* Apply the glassy lift effect to all modal inputs */
 .modal-content input, 
 .modal-content select, 
 .modal-content textarea {
@@ -485,7 +463,6 @@ body {
     transform: translateY(-2px);
 }
 
-/* Upgrade the Primary Buttons (Add Task / Save Task) to Neon Glow */
 .btn-primary {
     background: linear-gradient(135deg, var(--primary), var(--secondary));
     color: white;
@@ -521,7 +498,6 @@ body {
 .close-modal { font-size: 1.8rem; cursor: pointer; color: var(--text-muted); transition: color 0.2s; }
 .close-modal:hover { color: var(--danger); }
 
-/* Forms */
 .form-group { margin-bottom: 20px; display: flex; flex-direction: column; }
 .form-row { display: flex; gap: 20px; }
 .form-row .form-group { flex: 1; }
@@ -552,12 +528,8 @@ input:focus, select:focus, textarea:focus {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* =========================================
-   2. AUTHENTICATION (LOGIN/REGISTER) STYLES
-   ========================================= */
 
 .auth-body {
-    /* Base shifting background */
     background: linear-gradient(-45deg, #0f172a, #1e1b4b, #312e81, #2e1065, #0f172a);
     background-size: 400% 400%;
     animation: darkLiquid 15s ease infinite;
@@ -568,7 +540,7 @@ input:focus, select:focus, textarea:focus {
     height: 100vh;
     margin: 0;
     position: relative;
-    overflow: hidden; /* Prevents scrollbars from floating orbs */
+    overflow: hidden; 
     z-index: 1;
 }
 .auth-body::before,
@@ -588,22 +560,21 @@ input:focus, select:focus, textarea:focus {
     left: 10%;
 }
 
-/* Bottom Right Pink/Purple Orb */
 .auth-body::after {
     background: rgba(236, 72, 153, 0.3); 
     bottom: -10%;
     right: 10%;
-    animation-delay: -6s; /* Offset the animation so they move independently */
+    animation-delay: -6s; 
 }
 
-/* Background Animation Keyframes */
+
 @keyframes darkLiquid {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
 
-/* Orb Movement Keyframes */
+
 @keyframes floatOrb {
     0% { transform: translate(0, 0) scale(1); }
     100% { transform: translate(80px, -80px) scale(1.3); }
@@ -613,13 +584,13 @@ input:focus, select:focus, textarea:focus {
     background-color: var(--surface);
     border-radius: 24px;
     
-    /* THE MAGIC GLOW: A mix of purple/indigo glow and dark shadow for depth */
+    
     box-shadow: 
-        0 0 60px rgba(168, 85, 247, 0.3), /* Wide outer purple glow */
-        0 0 20px rgba(99, 102, 241, 0.4), /* Tighter inner indigo glow */
-        0 25px 50px -12px rgba(0, 0, 0, 0.6); /* Deep dark shadow to ground it */
+        0 0 60px rgba(168, 85, 247, 0.3),
+        0 0 20px rgba(99, 102, 241, 0.4),
+        0 25px 50px -12px rgba(0, 0, 0, 0.6);
         
-    /* Subtle glass edge highlight */
+
     border: 1px solid rgba(255, 255, 255, 0.15);
     
     position: relative;
@@ -627,7 +598,7 @@ input:focus, select:focus, textarea:focus {
     width: 900px;
     max-width: 90%;
     min-height: 550px;
-    z-index: 10; /* Ensures it sits above the floating shapes */
+    z-index: 10; 
 }
 
 .form-container {
@@ -652,7 +623,6 @@ input:focus, select:focus, textarea:focus {
     50%, 100% { opacity: 1; z-index: 5; }
 }
 
-/* Auth Sliding Overlay */
 .overlay-container {
     position: absolute;
     top: 0; left: 50%; width: 50%; height: 100%;
@@ -730,44 +700,38 @@ input:focus, select:focus, textarea:focus {
     padding: 14px 45px;
     letter-spacing: 1px;
     text-transform: uppercase;
-    /* Upgraded transition for a smoother, springier feel */
     transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
     cursor: pointer;
     margin-top: 15px;
-    /* Base resting shadow */
     box-shadow: 0 4px 15px rgba(168, 85, 247, 0.4);
 }
 
 .auth-btn:hover { 
     transform: translateY(-3px); 
-    filter: brightness(1.1); /* Makes the button colors slightly more vibrant */
+    filter: brightness(1.1); 
     
-    /* Triple-layered shadow for a realistic LED glow */
     box-shadow: 
-        0 0 20px rgba(168, 85, 247, 0.6), /* Outer purple glow */
-        0 0 40px rgba(99, 102, 241, 0.4), /* Wider indigo glow */
-        0 10px 20px rgba(0, 0, 0, 0.3);   /* Standard dark drop shadow underneath */
+        0 0 20px rgba(168, 85, 247, 0.6),
+        0 0 40px rgba(99, 102, 241, 0.4),
+        0 10px 20px rgba(0, 0, 0, 0.3);
 }
 .auth-btn:active { 
-    transform: translateY(1px) scale(0.95); 
+    transform: translateY(1px) scale(0.95);
     box-shadow: 0 0 15px rgba(168, 85, 247, 0.5); 
 }
 .auth-btn.ghost { 
     background: transparent; 
     border: 2px solid rgba(255, 255, 255, 0.7); 
     box-shadow: none; 
-    /* Adds a tiny bit of glass blur behind the button text */
     -webkit-backdrop-filter: blur(4px);
     backdrop-filter: blur(4px);
 }
 .auth-btn.ghost:hover { 
     background: rgba(255, 255, 255, 0.15); 
     border-color: #ffffff;
-    /* White neon halo effect */
     box-shadow: 
         0 0 15px rgba(255, 255, 255, 0.4),
         0 0 30px rgba(255, 255, 255, 0.2);
-    /* Make the text itself glow slightly */
     text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
 }
 .floating-shapes {
@@ -779,7 +743,7 @@ input:focus, select:focus, textarea:focus {
     overflow: hidden;
     margin: 0;
     padding: 0;
-    z-index: 0; /* Keeps it behind your login card */
+    z-index: 0; 
 }
 
 .floating-shapes li {
@@ -788,11 +752,9 @@ input:focus, select:focus, textarea:focus {
     list-style: none;
     width: 20px;
     height: 20px;
-    /* Glassmorphism effect for the shapes */
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
     
-    /* ADDED THIS LINE for Safari/iOS compatibility */
     -webkit-backdrop-filter: blur(3px); 
     backdrop-filter: blur(3px);
     
@@ -801,7 +763,6 @@ input:focus, select:focus, textarea:focus {
     border-radius: 10px;
 }
 
-/* Randomizing the sizes, horizontal positions, and animation speeds */
 .floating-shapes li:nth-child(1) { left: 25%; width: 80px; height: 80px; animation-delay: 0s; }
 .floating-shapes li:nth-child(2) { left: 10%; width: 20px; height: 20px; animation-delay: 2s; animation-duration: 12s; }
 .floating-shapes li:nth-child(3) { left: 70%; width: 20px; height: 20px; animation-delay: 4s; }
@@ -813,7 +774,6 @@ input:focus, select:focus, textarea:focus {
 .floating-shapes li:nth-child(9) { left: 20%; width: 15px; height: 15px; animation-delay: 2s; animation-duration: 35s; }
 .floating-shapes li:nth-child(10) { left: 85%; width: 150px; height: 150px; animation-delay: 0s; animation-duration: 11s; }
 
-/* The Keyframes that make them rise, spin, and become circles */
 @keyframes floatUp {
     0% {
         transform: translateY(0) rotate(0deg);
@@ -823,19 +783,14 @@ input:focus, select:focus, textarea:focus {
     100% {
         transform: translateY(-1000px) rotate(720deg);
         opacity: 0;
-        border-radius: 50%; /* Morphs into a circle at the top! */
+        border-radius: 50%; 
     }
 }
 
-/* Ensure your main login card sits firmly above the floating shapes */
 .auth-container {
     z-index: 10;
 }
-/* =========================================
-   GLASSY INPUT FIELDS (LOGIN/REGISTER)
-   ========================================= */
 
-/* Hide the <br> tags in the form so CSS can handle the spacing perfectly */
 .form-container form br {
     display: none;
 }
@@ -844,41 +799,35 @@ input:focus, select:focus, textarea:focus {
 .form-container select {
     width: 100%;
     padding: 14px 20px;
-    margin: 10px 0; /* Perfectly spaces out the inputs */
-    border: 2px solid rgba(99, 102, 241, 0.2); /* Soft indigo border */
+    margin: 10px 0; 
+    border: 2px solid rgba(99, 102, 241, 0.2); 
     border-radius: 12px;
     font-size: 0.95rem;
     font-weight: 500;
     color: var(--text-dark);
-    /* Very subtle tinted glass background */
     background: rgba(99, 102, 241, 0.04); 
     transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* THE FOCUS STATE (When a user clicks to type) */
 .form-container input:focus, 
 .form-container select:focus {
     outline: none;
-    border-color: var(--secondary); /* Turns bright purple */
+    border-color: var(--secondary); 
     background: #ffffff;
     
-    /* Neon glow halo around the input */
     box-shadow: 
         0 0 0 4px rgba(168, 85, 247, 0.15), 
         0 5px 15px rgba(168, 85, 247, 0.1); 
         
-    /* Tiny hover lift effect */
     transform: translateY(-2px); 
 }
 
-/* Make the placeholder text look elegant */
 .form-container input::placeholder {
     color: #94a3b8;
     font-weight: 400;
     transition: opacity 0.3s ease;
 }
 
-/* Hide placeholder text when typing */
 .form-container input:focus::placeholder {
     opacity: 0.5;
 }

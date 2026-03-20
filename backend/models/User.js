@@ -4,21 +4,21 @@ const userSchema = new mongoose.Schema({
     username: { 
         type: String, 
         required: true, 
-        unique: true // Prevents duplicate usernames
+        unique: true 
     },
     email: { 
         type: String, 
         required: true, 
         unique: true 
     },
-    password: { 
-        type: String, 
+    password: {
+        type: String,
         required: true 
     },
     role: { 
         type: String, 
         required: true,
-        enum: ['admin', 'employee'] // Ensures only valid roles are saved
+        enum: ['admin', 'employee'] 
     }
 }, { timestamps: true });
 

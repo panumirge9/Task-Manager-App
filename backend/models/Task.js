@@ -11,17 +11,17 @@ const taskSchema = new mongoose.Schema(
     },
     status: {
         type: String,
-        default: "Pending" // Capitalized to match the frontend dropdown
+        default: "Pending" 
     },
     assignedTo: {
         type: String,
         required: true
     },
-    priority: {            // Added comma above and inserted priority
+    priority: {
         type: String,
         default: "Medium"
     },
-    dueDate: {             // Inserted dueDate
+    dueDate: {
         type: Date
     }
 },

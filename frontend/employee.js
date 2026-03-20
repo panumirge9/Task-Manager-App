@@ -1,20 +1,19 @@
 const API_URL = "http://localhost:5000/api/tasks";
 
-// Get the current logged-in user from local storage
 const currentUser = localStorage.getItem('currentUser');
 const userRole = localStorage.getItem('userRole');
 
-// Security check: Redirect to login if they aren't logged in or aren't an employee
+
 if (!currentUser || userRole !== 'employee') {
     window.location.href = 'index.html';
 }
 
-// Personalize the dashboard header
+
 document.getElementById('welcomeMessage').innerText = `${currentUser}'s Tasks`;
 
 const employeeTaskList = document.getElementById("employeeTaskList");
 
-// Helper function to colorize status
+
 function getStatusClass(status) {
     if (status === 'Pending') return 'status-pending';
     if (status === 'In Progress') return 'status-inprogress';
@@ -22,13 +21,13 @@ function getStatusClass(status) {
     return '';
 }
 
-// Fetch and Render Tasks for the specific employee
+
 async function fetchMyTasks() {
     try {
         const res = await fetch(API_URL);
         const allTasks = await res.json();
         
-        // Filter tasks so the employee only sees their own
+        
         const myTasks = allTasks.filter(task => 
             task.assignedTo.toLowerCase() === currentUser.toLowerCase()
         );
@@ -65,7 +64,6 @@ async function fetchMyTasks() {
     }
 }
 
-// Update task status
 async function updateTaskStatus(id, newStatus) {
     try {
         await fetch(`${API_URL}/${id}`, {
@@ -74,14 +72,13 @@ async function updateTaskStatus(id, newStatus) {
             body: JSON.stringify({ status: newStatus })
         });
         
-        // Refresh the table to show the new badge color
+        
         fetchMyTasks();
     } catch (error) {
         console.error("Error updating status:", error);
     }
 }
 
-// --- Logout Functionality ---
 const logoutBtn = document.getElementById('logoutBtn');
 if (logoutBtn) {
     logoutBtn.addEventListener('click', (e) => {
@@ -92,5 +89,4 @@ if (logoutBtn) {
     });
 }
 
-// Initial load
 fetchMyTasks();

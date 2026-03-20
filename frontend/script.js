@@ -1,15 +1,14 @@
 const API_URL = "http://localhost:5000/api/tasks";
 const USERS_API_URL = "http://localhost:5000/api/users"; 
 
-let employees = []; // This will hold our database data
-// DOM Elements
+let employees = []; 
 const taskForm = document.getElementById("taskForm");
 const taskList = document.getElementById("taskList");
 const taskModal = document.getElementById("taskModal");
 const openModalBtn = document.getElementById("openTaskModal");
 const closeModalBtn = document.querySelector(".close-modal");
 
-// --- NAVIGATION LOGIC ---
+
 const navLinks = document.querySelectorAll('.sidebar .nav-links li');
 const sections = {
     'Dashboard': document.getElementById('dashboardSection'),
@@ -41,7 +40,7 @@ navLinks.forEach(link => {
     });
 });
 
-// Modal UI Controls
+
 openModalBtn.addEventListener("click", () => taskModal.classList.remove("hidden"));
 closeModalBtn.addEventListener("click", () => taskModal.classList.add("hidden"));
 window.addEventListener("click", (e) => {
@@ -55,7 +54,7 @@ function getStatusClass(status) {
     return '';
 }
 
-// --- FETCH & CALCULATE DATA ---
+
 async function fetchTasks() {
     try {
         const res = await fetch(API_URL);
@@ -75,9 +74,6 @@ async function fetchEmployees() {
         employees = await res.json();
         
         populateAssignDropdown();
-        
-        // Only fetch tasks AFTER we have the employees, 
-        // so the dashboard grid renders correctly.
         fetchTasks(); 
     } catch (error) {
         console.error("Error fetching employees:", error);
@@ -88,7 +84,7 @@ function populateAssignDropdown() {
     const assignSelect = document.getElementById("assignedTo");
     if (!assignSelect) return;
     
-    assignSelect.innerHTML = ""; // Clear out anything existing
+    assignSelect.innerHTML = ""; 
     
     if (employees.length === 0) {
         assignSelect.innerHTML = `<option value="" disabled selected>No employees found</option>`;
@@ -97,12 +93,12 @@ function populateAssignDropdown() {
 
     employees.forEach(emp => {
         const option = document.createElement("option");
-        option.value = emp.username; // Use the DB username
-        option.textContent = emp.username; // Capitalize via CSS later if needed
+        option.value = emp.username; 
+        option.textContent = emp.username; 
         assignSelect.appendChild(option);
     });
 }
-// 1. Render Tasks Table
+
 function renderTaskTable(tasks) {
     taskList.innerHTML = "";
     tasks.forEach(task => {
@@ -124,7 +120,7 @@ function renderTaskTable(tasks) {
     });
 }
 
-// 2. Update Dashboard Statistics
+
 function updateDashboardStats(tasks) {
     const total = tasks.length;
     const completed = tasks.filter(t => t.status === 'Completed').length;
@@ -134,11 +130,10 @@ function updateDashboardStats(tasks) {
     document.getElementById('statCompleted').innerText = completed;
     document.getElementById('statPending').innerText = pending;
     
-    // NEW: Automatically count the number of employees!
+    
     document.getElementById('statTeamSize').innerText = employees.length; 
 }
 
-// 3. Render Employee Grid
 function renderEmployeeGrid(tasks) {
     const employeeGrid = document.getElementById('employeeGrid');
     if (!employeeGrid) return; 
@@ -146,12 +141,12 @@ function renderEmployeeGrid(tasks) {
     employeeGrid.innerHTML = "";
 
     employees.forEach(emp => {
-        // Match tasks to the specific employee's username
+        
         const empTasks = tasks.filter(t => t.assignedTo === emp.username);
         const activeCount = empTasks.filter(t => t.status !== 'Completed').length;
         const compCount = empTasks.filter(t => t.status === 'Completed').length;
 
-        // Generate a dynamic avatar based on their username
+        
         const avatarUrl = `https://ui-avatars.com/api/?name=${emp.username}&background=random&color=fff`;
 
         const card = document.createElement('div');
@@ -177,7 +172,6 @@ function renderEmployeeGrid(tasks) {
     });
 }
 
-// Add new task
 taskForm.addEventListener("submit", async (e) => {
     e.preventDefault();
     const taskData = {
@@ -203,7 +197,7 @@ taskForm.addEventListener("submit", async (e) => {
     }
 });
 
-// Delete task
+
 async function deleteTask(id) {
     if(confirm("Are you sure you want to delete this task?")) {
         try {
@@ -226,5 +220,5 @@ if (logoutBtn) {
     });
 }
 
-// Initial load
+
 fetchEmployees();
