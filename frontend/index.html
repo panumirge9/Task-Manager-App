@@ -3,81 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - System Portal</title>
+    <title>Login / Register - Task Manager</title>
     <link rel="stylesheet" href="style.css">
-    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
-<body class="login-body">
-    <div class="login-wrapper">
+<body class="auth-body">
+    <body class="auth-body">
+    <ul class="floating-shapes">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <div class="auth-container" id="authContainer">
+        <div class="form-container sign-up-container">
+            <form id="registerForm">
+                <h2>Create Account</h2>
+                <br>
+                <br>
+                <input type="text" id="regUsername" placeholder="Name" required />
+                <br>
+                <input type="email" id="regEmail" placeholder="Email" required />
+                <br>
+                <input type="password" id="regPassword" placeholder="Password" required />
+                <br>
+                <select id="regRole" aria-label="Select Role" required>
+    <option value="" disabled selected>Select Role</option>
+    <option value="admin">Administrator</option>
+    <option value="employee">Employee</option>
+</select>
+                <button type="submit" class="auth-btn">Sign Up</button>
+            </form>
+        </div>
         
-        <div class="login-left">
-            <div class="login-form-container">
-                <div class="login-header">
-                    <h2>Welcome Back 👋</h2>
-                    <p>Sign in to manage your team's tasks</p>
+        <div class="form-container sign-in-container">
+            <form id="loginForm">
+                <h2>Sign in</h2>
+                <br>
+                <br>
+                <input type="text" id="loginUsername" placeholder="Username (e.g., shiv)" required />
+                <br>
+                <input type="password" id="loginPassword" placeholder="Password" required />
+                <br>
+            <select id="loginRole" aria-label="Select Role" required>
+    <option value="admin">Administrator</option>
+    <option value="employee">Employee</option>
+</select>
+                <button type="submit" class="auth-btn">Sign In</button>
+            </form>
+        </div>
+        
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h2>Welcome Back!</h2>
+                    <p>To keep connected with us please login with your personal info</p>
+                    <button class="auth-btn ghost" id="signInBtn">Sign In</button>
                 </div>
-                
-                <form id="loginForm">
-                    <div class="form-group">
-                        <label for="username">Username</label>
-                        <input type="text" id="username" placeholder="e.g., Shivani Patra" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" id="password" placeholder="Enter password" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="role">Role</label>
-                        <select id="role" required>
-                            <option value="admin">Administrator</option>
-                            <option value="employee">Employee</option>
-                        </select>
-                    </div>
-
-                    <button type="submit" class="btn-primary" style="width: 100%; margin-top: 20px; padding: 14px; font-size: 1.1rem;">Sign In</button>
-                </form>
+                <div class="overlay-panel overlay-right">
+                    <h2>Hello, Friend!</h2>
+                    <p>Enter your personal details and start your journey with us</p>
+                    <button class="auth-btn ghost" id="signUpBtn">Sign Up</button>
+                </div>
             </div>
         </div>
-
-        <div class="login-right">
-            <div class="team-profiles-container">
-                
-                <div class="profile-card">
-                    <div class="profile-img-wrapper">
-                        <img src="images/shiv.jpeg" alt="Shivraj" onerror="this.src='https://randomuser.me/api/portraits/men/32.jpg'">
-                    </div>
-                    <div class="profile-info">
-                        <h3>Shivraj</h3>
-                        <p>Administrator</p>
-                    </div>
-                </div>
-
-                <div class="profile-card">
-                    <div class="profile-img-wrapper">
-                        <img src="images/om.jpeg" alt="Om" onerror="this.src='https://randomuser.me/api/portraits/men/45.jpg'">
-                    </div>
-                    <div class="profile-info">
-                        <h3>Om</h3>
-                        <p>Team Lead</p>
-                    </div>
-                </div>
-
-                <div class="profile-card">
-                    <div class="profile-img-wrapper">
-                        <img src="images/pranav.jpeg" alt="Pranav" onerror="this.src='https://randomuser.me/api/portraits/men/22.jpg'">
-                    </div>
-                    <div class="profile-info">
-                        <h3>Pranav</h3>
-                        <p>Developer</p>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
     </div>
 
     <script src="login.js"></script>

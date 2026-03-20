@@ -1,16 +1,16 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const path = require('path'); // <-- Added this
+const path = require('path');
 
 const taskRoutes = require('./routes/taskRoutes');
+const authRoutes = require('./routes/authRoutes'); // <-- 1. Import Auth Routes
 
 const app = express();
 
 // Middleware
 app.use(cors());
 app.use(express.json());
-
 
 app.use('/frontend', express.static(path.join(__dirname, 'frontend'))); 
 
@@ -25,6 +25,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/taskdb')
 
 // Routes
 app.use('/api/tasks', taskRoutes);
+app.use('/api/users', authRoutes); // <-- 2. Tell the server to use the Auth Routes
 
 // Server Start
 const PORT = process.env.PORT || 5000;

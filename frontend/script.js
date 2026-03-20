@@ -1,5 +1,7 @@
 const API_URL = "http://localhost:5000/api/tasks";
+const USERS_API_URL = "http://localhost:5000/api/users"; 
 
+let employees = []; // This will hold our database data
 // DOM Elements
 const taskForm = document.getElementById("taskForm");
 const taskList = document.getElementById("taskList");
@@ -67,7 +69,39 @@ async function fetchTasks() {
         console.error("Error fetching tasks:", error);
     }
 }
+async function fetchEmployees() {
+    try {
+        const res = await fetch(USERS_API_URL);
+        employees = await res.json();
+        
+        populateAssignDropdown();
+        
+        // Only fetch tasks AFTER we have the employees, 
+        // so the dashboard grid renders correctly.
+        fetchTasks(); 
+    } catch (error) {
+        console.error("Error fetching employees:", error);
+    }
+}
 
+function populateAssignDropdown() {
+    const assignSelect = document.getElementById("assignedTo");
+    if (!assignSelect) return;
+    
+    assignSelect.innerHTML = ""; // Clear out anything existing
+    
+    if (employees.length === 0) {
+        assignSelect.innerHTML = `<option value="" disabled selected>No employees found</option>`;
+        return;
+    }
+
+    employees.forEach(emp => {
+        const option = document.createElement("option");
+        option.value = emp.username; // Use the DB username
+        option.textContent = emp.username; // Capitalize via CSS later if needed
+        assignSelect.appendChild(option);
+    });
+}
 // 1. Render Tasks Table
 function renderTaskTable(tasks) {
     taskList.innerHTML = "";
@@ -99,46 +133,35 @@ function updateDashboardStats(tasks) {
     document.getElementById('statTotalTasks').innerText = total;
     document.getElementById('statCompleted').innerText = completed;
     document.getElementById('statPending').innerText = pending;
+    
+    // NEW: Automatically count the number of employees!
+    document.getElementById('statTeamSize').innerText = employees.length; 
 }
 
 // 3. Render Employee Grid
 function renderEmployeeGrid(tasks) {
     const employeeGrid = document.getElementById('employeeGrid');
-    if (!employeeGrid) return; // Safety check in case HTML is missing
+    if (!employeeGrid) return; 
     
     employeeGrid.innerHTML = "";
 
-    const employees = [
-        { 
-            name: 'Shivraj', 
-            username: 'shivraj_kadam_134',
-            image: 'images/shiv.jpeg'
-        },
-        { 
-            name: 'Om', 
-            username: 'om_kadam_1369',
-            image: 'images/om.jpeg'
-        },
-        { 
-            name: 'Pranav', 
-            username: 'vip_panu',
-            image: 'images/panu.jpeg'
-        }
-    ];
-
     employees.forEach(emp => {
+        // Match tasks to the specific employee's username
         const empTasks = tasks.filter(t => t.assignedTo === emp.username);
         const activeCount = empTasks.filter(t => t.status !== 'Completed').length;
         const compCount = empTasks.filter(t => t.status === 'Completed').length;
+
+        // Generate a dynamic avatar based on their username
+        const avatarUrl = `https://ui-avatars.com/api/?name=${emp.username}&background=random&color=fff`;
 
         const card = document.createElement('div');
         card.className = 'employee-card';
         card.innerHTML = `
             <div class="emp-avatar">
-                <img src="${emp.image}" alt="${emp.name}'s Profile Photo" onerror="this.src='https://via.placeholder.com/80?text=No+Img'">
+                <img src="${avatarUrl}" alt="${emp.username}'s Profile Photo">
             </div>
-            <h3>${emp.name}</h3>
-            <p class="role">@${emp.username}</p>
+            <h3 style="text-transform: capitalize;">${emp.username}</h3>
+            <p class="role">${emp.email || 'Employee'}</p>
             <div class="emp-stats">
                 <div class="emp-stat-item">
                     <span>${activeCount}</span>
@@ -204,4 +227,4 @@ if (logoutBtn) {
 }
 
 // Initial load
-fetchTasks();
+fetchEmployees();
